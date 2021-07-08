@@ -95,6 +95,9 @@ return [
                     'passphrase' => env('RABBITMQ_SSL_PASSPHRASE', null),
                 ],
                 'queue' => [
+                    'exchange' => 'application-x',
+                    'exchange_type' => 'fanout',
+                    'exchange_routing_key' => 'test_route',
                     'job' => VladimirYuldashev\LaravelQueueRabbitMQ\Queue\Jobs\RabbitMQJob::class,
                 ],
             ],
@@ -103,6 +106,8 @@ return [
              * Set to "horizon" if you wish to use Laravel Horizon.
              */
             'worker' => env('RABBITMQ_WORKER', 'default'),
+
+
 
         ],
     ],

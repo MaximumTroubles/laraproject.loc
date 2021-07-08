@@ -1,5 +1,6 @@
 <?php
 
+use App\Jobs\TestJob;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,7 +15,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+   // for ($i = 0; $i < 50; $i++) {
+        TestJob::dispatch()->onQueue('default-2')/*->delay(now()->seconds(10))*/;
+   // }
+    return 'RabbitMQ message';
 });
 
 Route::get('/dashboard', function () {
